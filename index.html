@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Special One 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+    --bg1:#ff9a9e; --bg2:#fad0c4; --primary:#ff4d6d; --white:#ffffff;
+}
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: radial-gradient(circle at 20% 10%, #ffe1e7 0%, transparent 30%),
+                radial-gradient(circle at 80% 90%, #ffe1e7 0%, transparent 28%),
+                linear-gradient(135deg, var(--bg1), var(--bg2));
+    display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff;
+}
+.container{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(14px) saturate(120%);
+    border-radius:24px;padding:34px;max-width:520px;width:min(92%, 520px);text-align:center;
+    box-shadow:0 18px 50px rgba(0,0,0,0.25);
+    border:1px solid rgba(255,255,255,0.35);
+}
+.header{
+    display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:8px;
+}
+.logo-heart{font-size:32px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));}
+h1{font-size:30px;margin:0 0 6px}
+p{font-size:16px;opacity:0.95;margin:0}
+.sub{margin-top:8px;opacity:0.85}
+.buttons{margin-top:26px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+button{
+    border:none;padding:14px 28px;font-size:16px;border-radius:999px;cursor:pointer;margin:0;transition:transform .25s, box-shadow .25s, background .25s, color .25s;
+}
+.yes{background:var(--primary);color:#fff;box-shadow:0 10px 18px rgba(255,77,109,.35)}
+.yes:hover{transform:translateY(-2px) scale(1.05)}
+.no{background:#fff;color:var(--primary);position:relative}
+.no:focus{outline:none}
+.helper{margin-top:10px;font-size:13px;opacity:.8}
+.hidden{display:none}
+.emoji{font-size:70px;animation: pop 1.2s infinite}
+@keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.gallery{margin-top:18px;display:grid;grid-template-columns: repeat(3,1fr);gap:10px}
+.gallery img{width:100%;border-radius:12px}
+.cta{margin-top:16px;font-weight:600}
+.teddy-gif{margin-top:14px;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.25);width:100%;max-height:260px;object-fit:cover}
+.footer-note{margin-top:18px;font-size:13px;opacity:.85}
+@media (max-width:420px){
+  h1{font-size:26px}
+  .emoji{font-size:58px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="box" aria-live="polite">
+    <div class="header">
+        <span class="logo-heart">💖</span>
+        <h1>Hey, my love ✨</h1>
+    </div>
+    <p>Will you be my girlfriend and stay with me forever? 🌸</p>
+    <p class="sub">Be honest, but please be kind to my heart 🙂</p>
+
+    <div class="buttons">
+        <button class="yes" onclick="accept()" aria-label="Yes">Yes 💖</button>
+        <button class="no" onmouseover="moveNo()" onfocus="moveNo()" onclick="moveNo()" aria-label="No">No 💔</button>
+    </div>
+    <div class="helper">If you try to press "No", it will run away 😅</div>
+</div>
+
+<script>
+function accept(){
+    document.getElementById("box").innerHTML = `
+        <h1>I knew it! 😍</h1>
+        <div class="emoji" aria-hidden="true">🐻💋❤️</div>
+        <p class="cta">You just made me the luckiest person in the world 💞</p>
+        <img class="teddy-gif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Two cute teddy bears kissing" loading="lazy">
+        <p class="footer-note">From now on, every day with you will be special ✨</p>
+    `;
+}
+
+function moveNo(){
+    const btn = document.querySelector(".no");
+    const container = document.querySelector(".container");
+    const rect = container.getBoundingClientRect();
+    const maxX = rect.width - btn.offsetWidth - 16;
+    const maxY = rect.height - btn.offsetHeight - 16;
+    const x = Math.random() * maxX - maxX/2;
+    const y = Math.random() * maxY - maxY/2;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+</script>
+
+</body>
+</html>
